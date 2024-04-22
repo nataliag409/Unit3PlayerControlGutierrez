@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject obsticlePrefab;
+    public GameObject[] obsticlePrefabs;
     private Vector3 spawnPos = new Vector3(25, 0, 0);
     private float startDelay = 2;
     private float repeatRate = 2;
     private PlayerController playerControllerScript;
+    private int randomObsticle;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,8 @@ public class SpawnManager : MonoBehaviour
     {
         if(playerControllerScript.gameOver == false)
         {
-            Instantiate(obsticlePrefab, spawnPos, obsticlePrefab.transform.rotation);
+            randomObsticle = Random.Range(0, obsticlePrefabs.Length);
+            Instantiate(obsticlePrefabs[randomObsticle], spawnPos, obsticlePrefabs[randomObsticle].transform.rotation);
         }
 
     }
